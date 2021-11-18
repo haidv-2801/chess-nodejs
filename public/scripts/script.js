@@ -15,7 +15,7 @@ myVideo.muted = true;
 
 const myPeer = new Peer(undefined, {
   secure: true,
-  host: 'https://chess-nodejs.herokuapp.com',
+  host: 'chess-nodejs.herokuapp.com',
 });
 
 const callBack = ({ error }) => {
