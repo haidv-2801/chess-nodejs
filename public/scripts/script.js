@@ -76,10 +76,10 @@ navigator.mediaDevices
     });
   });
 
-myPeer.on('open', (id) => {
-  socket.emit('join', { firstname, roomid, userid: id }, callBack);
-  // socket.emit('video-id', id);
-});
+socket.emit('join', { firstname, roomid, userid: 1 }, callBack);
+// myPeer.on('open', (id) => {
+//   // socket.emit('video-id', id);
+// });
 
 // myPeer.on('open', (id) => {
 //   console.log(id);

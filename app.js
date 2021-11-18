@@ -33,7 +33,7 @@ io.on('connection', (socket) => {
       return callback({ error });
     }
 
-    socket.to(roomid).broadcast.emit('user-connected', userid);
+    // socket.to(roomid).broadcast.emit('user-connected', userid);
 
     // socket.to(roomid).on('video-id', (id) => {
     //   console.log('test');
@@ -74,7 +74,7 @@ io.on('connection', (socket) => {
         isWaiting: getUsersInRoom(roomid).length < 2,
       });
 
-      socket.to(roomid).broadcast.emit('user-disconnected', userid);
+      // socket.to(roomid).broadcast.emit('user-disconnected', userid);
     });
 
     socket.to(roomid).on('moving', (board) => {
