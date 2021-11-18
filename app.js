@@ -18,8 +18,6 @@ const publicDirectoryPath = path.join(__dirname, './public');
 
 app.use(express.static(publicDirectoryPath));
 
-var videoId = null;
-
 io.on('connection', (socket) => {
   socket.on('join', ({ firstname, roomid, userid }, callback) => {
     //create room
