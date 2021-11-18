@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <!-- Libraly -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <!-- Common -->
+    <link rel="stylesheet" href="./assets/css/common.css" />
+    <link
+      rel="stylesheet"
+      href="./assets/lib/chessboardjs/css/chessboard-0.3.0.css"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
+    <!-- Individual -->
+    <title>Chess App</title>
+
+    <script>
+      // window.addEventListener('beforeunload', function (e) {
+      //   e.preventDefault();
+      //   window.setTimeout(function () {
+      //     location.href = '/';
+      //   }, 0);
+      //   window.onbeforeunload = null;
+      // });
+    </script>
+  </head>
+  <body>
+    <div id="video-grid"></div>
+
+    <!-- player info -->
+
+    <div class="player-container">
+      <div class="player-turn position-relative">
+        <span class="b-draw-area"> </span>
+        <img src="./assets/img/chesspieces/wikipedia/bK.png" alt="white-king" />
+        <span class="badge bg-dark badge-black-player">Người chơi</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="30"
+          height="30"
+          fill="#803e04"
+          class="bi bi-gear mt-2 hide"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"
+          />
+          <path
+            d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"
+          />
+        </svg>
+        <div class="m-dropdown hide">
+          <div selected value="1" class="dropdown-item">Dễ</div>
+          <div value="2" class="dropdown-item">Trung bình</div>
+          <div value="3" class="dropdown-item">Khó</div>
+        </div>
+      </div>
+      <button
+        id="btn-draw"
+        class="m-button hide"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Xin hòa"
+      >
+        <img src="https://img.icons8.com/ios/40/000000/handshake.png" />
+      </button>
+      <div class="player-turn position-relative">
+        <span class="w-draw-area"> </span>
+        <img src="./assets/img/chesspieces/wikipedia/wK.png" alt="black-king" />
+        <span class="badge bg-secondary badge-white-player">Người chơi</span>
+      </div>
+    </div>
+
+    <div id="app">
+      <!-- <div class="progress mb-3">
+        <div
+          class="progress-bar progress-bar-striped progress-bar-animated"
+          role="progressbar"
+          aria-valuenow="75"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          style="width: 75%"
+        ></div>
+      </div> -->
+      <!-- alert -->
+      <div class="alert alert-primary alert-fixed hide" role="alert"></div>
+
+      <!-- board -->
+      <div id="board" class="board"></div>
+
+      <!-- info game -->
+      <div class="info">
+        <!-- Search depth:
+        <select id="search-depth">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3" selected>3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select> -->
+
+        <br />
+        <span>Positions evaluated: <span id="position-count"></span></span>
+        <br />
+        <span>Time: <span id="time"></span></span>
+        <br />
+        <span>Positions/s: <span id="positions-per-s"></span> </span>
+        <br />
+        <br />
+        <div id="move-history" class="move-history"></div>
+        <div id="play-mode"></div>
+      </div>
+    </div>
+    <!-- player info -->
+
+    <!-- Library -->
+    <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./assets/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="http://localhost:8000/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.1/qs.min.js"></script>
+
+    <!-- Common -->
+    <script src="./scripts/constant.js"></script>
+    <script src="./assets/lib/chessboardjs/js/chess.js"></script>
+    <script src="./assets/lib/chessboardjs/js/chessboard-0.3.0.js"></script>
+
+    <!-- Individual -->
+    <script src="./scripts/script.js"></script>
+  </body>
+</html>

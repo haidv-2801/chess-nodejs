@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <!-- Libraly -->
+    <!-- Common -->
+    <link rel="stylesheet" href="./assets/css/common.css" />
+    <link rel="stylesheet" href="./assets/css/index.css" />
+    <!-- Individual -->
+
+    <title>Chess App</title>
+  </head>
+  <body>
+    <!-- user form -->
+    <div class="container">
+      <form class="form-container" action="/game.html">
+        <div class="logo">
+          <img src="./assets/img/chesspieces/wikipedia/wK.png" alt="the king" />
+          <h1>Cờ vua</h1>
+        </div>
+        <div class="play-engine">
+          <div class="play-engine__row">
+            <input
+              type="radio"
+              id="pve"
+              onclick="handleChangeGameMode(this)"
+              value="0"
+              name="gamemode"
+              checked
+            />
+            &nbsp; <label for="pve">Chơi với máy</label><br />
+          </div>
+          <div class="play-engine__row">
+            <input
+              type="radio"
+              id="pvp"
+              onclick="handleChangeGameMode(this)"
+              value="1"
+              name="gamemode"
+            />
+              <label for="pvp">Chơi 2 người</label><br />
+          </div>
+          <div class="play-engine__row">
+            <input
+              type="radio"
+              id="pvf"
+              onclick="handleChangeGameMode(this)"
+              value="2"
+              name="gamemode"
+            />
+              <label for="pvf">Chơi với bạn</label><br />
+          </div>
+        </div>
+
+        <!-- info form -->
+        <div class="play-online"></div>
+
+        <input type="submit" value="Chơi" />
+      </form>
+    </div>
+
+    <!-- Library -->
+    <script src="./assets/lib/jquery/jquery-3.2.1.min.js"></script>
+    <!-- Common -->
+    <script src="./scripts/constant.js"></script>
+
+    <script></script>
+    <!-- Individual -->
+    <script src="./scripts/startScreen.js"></script>
+  </body>
+</html>
